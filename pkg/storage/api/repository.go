@@ -8,6 +8,7 @@ import (
 	"github.com/yuisofull/leetgo/pkg/listcompanies"
 	"github.com/yuisofull/leetgo/pkg/listproblems"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -46,14 +47,15 @@ func (s *Storage) GetCompanies() ([]listcompanies.Company, error) {
 		return nil, errors.New("failed to fetch companies: " + err.Error())
 	}
 	defer resp.Body.Close()
-	// parse response
 	var companies []response
 	if err := json.NewDecoder(resp.Body).Decode(&companies); err != nil {
 		return nil, errors.New("failed to decode response: " + err.Error())
 	}
-	// convert response to companies
 	var result []listcompanies.Company
 	for _, c := range companies {
+		if !strings.HasSuffix(c.Name, ".csv") {
+			continue
+		}
 		result = append(result, listcompanies.Company{
 			Name: strings.TrimSuffix(c.Name, ".csv"),
 		})
@@ -80,7 +82,7 @@ func (s *Storage) GetProblemsFromCompany(company string) ([]listproblems.Problem
 		return nil, errors.New("failed to fetch problems: " + err.Error())
 	}
 	defer resp.Body.Close()
-	// parse response
+
 	var ps []Problem
 	if err := gocsv.Unmarshal(resp.Body, &ps); err != nil {
 		return nil, errors.New("failed to decode response: " + err.Error())
@@ -91,10 +93,18 @@ func (s *Storage) GetProblemsFromCompany(company string) ([]listproblems.Problem
 			ID:         p.ID,
 			Title:      p.Title,
 			URL:        fmt.Sprintf("https://leetcode.com%s", p.URL),
-			Acceptance: p.Acceptance,
-			Difficulty: p.Difficulty,
-			Frequency:  p.Frequency,
+			Difficulty: strings.ToLower(p.Difficulty),
 		})
+		acc, err := strconv.ParseFloat(strings.TrimSuffix(p.Acceptance, "%"), 64)
+		if err != nil {
+			return nil, errors.New("failed to parse acceptance rate: " + err.Error())
+		}
+		problems[len(problems)-1].Acceptance = acc
+		freq, err := strconv.ParseFloat(strings.TrimSuffix(p.Frequency, "%;"), 64)
+		if err != nil {
+			return nil, errors.New("failed to parse frequency rate: " + err.Error())
+		}
+		problems[len(problems)-1].Frequency = freq
 		if p.IsPremium == "N" {
 			problems[len(problems)-1].IsPremium = false
 		} else {

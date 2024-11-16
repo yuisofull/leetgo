@@ -1,7 +1,5 @@
 package apistore
 
-//"ID","Title","URL","Is Premium","Acceptance %","Difficulty","Frequency %"
-
 // Problem represents a LeetCode problem
 type Problem struct {
 	ID         string `json:"id" csv:"ID"`
