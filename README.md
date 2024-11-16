@@ -23,13 +23,21 @@ go build -o leetgo
 ### **Basic Commands**
 1. **List All Companies:**
    ```bash
-   leetgo -l
+    $ leetgo -l
+    Available Companies:
+    accenture
+    accolite
+    activision
+    adobe
    ```
-   Lists all companies available in the LeetCode data.
 
 2. **List Problems for a Specific Company:**
    ```bash
-   leetgo -c <company-name>
+    $ leetgo -c google
+    Problems for company 'google':
+    https://leetcode.com/problems/race-car | Frequency: 100.00%
+    https://leetcode.com/problems/stock-price-fluctuation | Frequency: 91.87%
+    https://leetcode.com/problems/my-calendar-i | Frequency: 90.55%
    ```
    Displays problems tagged with the specified company. Add the `-a` flag for detailed output.
 
@@ -59,10 +67,11 @@ leetgo -c <company-name>
 
 **Example (Brief Output):**
 ```bash
-$ leetgo -c google
+$ leetgo -c -f google
 Problems for company 'google':
-https://leetcode.com/problems/two-sum/ | 95.00%
-https://leetcode.com/problems/add-two-numbers/ | 89.50%
+https://leetcode.com/problems/race-car | Frequency: 100.00%
+https://leetcode.com/problems/stock-price-fluctuation | Frequency: 91.87%
+https://leetcode.com/problems/my-calendar-i | Frequency: 90.55%
 ```
 
 **Example (Detailed Output):**
