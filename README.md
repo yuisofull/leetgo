@@ -4,20 +4,6 @@ LeetGo is a CLI tool designed to help you explore tagged questions from LeetCode
 
 ---
 
-## **Download and Installation**
-
-Pre-built binaries are available for **Windows**, **Linux**, and **macOS** in the [Releases](https://github.com/yuisofull/leetgo/releases) section.
-
-### **Steps to Install**
-If you'd prefer to build the binary yourself, follow these steps:
-```bash
-git clone https://github.com/yuisofull/leetgo.git
-cd leetgo
-go build -o leetgo
-```
-
----
-
 ## **Usage**
 
 ### **Basic Commands**
@@ -43,6 +29,20 @@ go build -o leetgo
 
 3. **Apply Filters:**
    Combine flags like `--frequency`, `--difficulty`, `--acceptance`, and `--non-premium` for refined results.
+
+---
+
+## **Download and Installation**
+
+Pre-built binaries are available for **Windows**, **Linux**, and **macOS** in the [Releases](https://github.com/yuisofull/leetgo/releases) section.
+
+### **Steps to Install**
+If you'd prefer to build the binary yourself, follow these steps:
+```bash
+git clone https://github.com/yuisofull/leetgo.git
+cd leetgo
+go build -o leetgo
+```
 
 ---
 
