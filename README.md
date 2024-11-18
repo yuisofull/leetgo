@@ -15,6 +15,7 @@ LeetGo is a CLI tool designed to help you explore tagged questions from LeetCode
     accolite
     activision
     adobe
+    ...
    ```
 
 2. **List Problems for a Specific Company:**
@@ -24,6 +25,7 @@ LeetGo is a CLI tool designed to help you explore tagged questions from LeetCode
     https://leetcode.com/problems/race-car | Frequency: 100.00%
     https://leetcode.com/problems/stock-price-fluctuation | Frequency: 91.87%
     https://leetcode.com/problems/my-calendar-i | Frequency: 90.55%
+    ...
    ```
    Displays problems tagged with the specified company. Add the `-a` flag for detailed output.
 
